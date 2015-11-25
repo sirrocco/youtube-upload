@@ -1,0 +1,13 @@
+{
+    "preset": "airbnb",
+    "excludeFiles": [
+    ".git/**",
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**"
+  ],
+  "validateLineBreaks": false,
+  "requireMultipleVarDecl": true,
+  "disallowMultipleVarDecl": false,
+  "maxErrors": 500,
+}
