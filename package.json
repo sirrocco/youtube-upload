@@ -1,0 +1,31 @@
+{
+  "name": "youtube-upload",
+  "version": "1.0.0",
+  "description": "Upload a video to youtube",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sirrocco/youtube-upload.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sirrocco/youtube-upload/issues"
+  },
+  "homepage": "https://github.com/sirrocco/youtube-upload#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "google-auth-library": "^0.9.7",
+    "googleapis": "^2.1.6",
+    "helmet": "^0.14.0",
+    "jade": "^1.11.0",
+    "jscs": "^2.6.0",
+    "jsonfile": "^2.2.3",
+    "morgan": "^1.6.1",
+    "request": "^2.67.0"
+  }
+}
