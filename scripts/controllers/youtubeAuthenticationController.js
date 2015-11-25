@@ -1,17 +1,13 @@
 'use strict';
 
 var credentials = require('../../credentials'),
-    jsonfile = require('jsonfile'),
-    request = require('request');
+    request = require('request'),
+    tokenManager = require('../services/tokenManager');
 
 module.exports = {
   initAuthentication: function(req, res) {
-    if (req.session.youtubeToken) {
-      return res.redirect('/');
-    }
-
-    jsonfile.readFile('./token.json', result, function(err, tokenData) {
-      if (err) {
+    tokenManager.load(function(tokenData) {
+      if (!tokenData) {
         console.log(err);
         var authUrl = credentials.oauthUri + '?';
         authUrl += 'client_id=' + encodeURIComponent(credentials.clientId);
@@ -19,10 +15,8 @@ module.exports = {
         authUrl += '&access_type=offline';
         authUrl += '&scope=' + encodeURIComponent('https://www.googleapis.com/auth/youtube.upload');
         authUrl += '&redirect_uri=' + encodeURIComponent(credentials.oauthReturnUrl);
-
         return res.redirect(authUrl);
       } else {
-        req.session.youtubeToken = tokenData;
         return res.redirect('/');
       }
     });
@@ -52,8 +46,7 @@ module.exports = {
         function(error, response, body) {
           if (!error && response.statusCode == 200) {
             var tokenData = JSON.parse(body);
-            jsonfile.writeFile('./token.json', tokenData);
-            req.session.youtubeToken = tokenData;
+            tokenManager.save(tokenData);
             return res.redirect('/?success=true');
           } else {
             console.log('Something went terribly wrong:', body);

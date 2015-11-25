@@ -6,6 +6,6 @@ var youtubeAuthController = require('./controllers/youtubeAuthenticationControll
 
 module.exports = function(router) {
   router.get('/', homeController.get);
-  router.get('/youtube/authentication', youtubeAuthController.initAuthentication);
+  router.get('/youtube/authenticate', youtubeAuthController.initAuthentication);
   router.get('/youtube/oauth2callback', youtubeAuthController.oauth2Callback);
 };
