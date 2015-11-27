@@ -1,10 +1,11 @@
 {
   "name": "youtube-upload",
   "version": "1.0.0",
-  "description": "Upload a video to youtube",
+  "description": "Short test of authenticating with OAuth2 to Youtube and using their API.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "jscs": "^2.6.0",
     "jsonfile": "^2.2.3",
     "morgan": "^1.6.1",
+    "multer": "^1.1.0",
     "request": "^2.67.0"
   }
 }

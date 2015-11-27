@@ -7,8 +7,8 @@ var express = require('express'),
     path = require('path'),
     helmet = require('helmet'),
     session = require('express-session'),
-    google = require('googleapis'),
-    logger = require('morgan');
+    logger = require('morgan'),
+    youtubeApi = require('./scripts/services/youtubeApi');
 
 var app = express();
 app.use(express.static('public'));
@@ -26,8 +26,20 @@ app.use(session({
     })
 );
 
-var routing = require('./scripts/routing');
+app.all('/activity-list', requireLogin);
+app.all('/video*', requireLogin);
+
+var routing = require('./scripts/routes');
 routing(app);
+
+function requireLogin(req, res, next) {
+  console.log(youtubeApi.isAuthenticated)
+  if (!youtubeApi.isAuthenticated) {
+    return res.send(401);
+  }
+
+  next();
+};
 
 var server = app.listen(5000, function() {
   var host = server.address().address,

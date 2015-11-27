@@ -1,7 +1,15 @@
 html
-  head
-    title="Hi"
-  body
-    h1="I am in the body of things"
-    div.
-      #{tokenData.access_token}
+    head
+        title="Hi"
+    body
+
+        if tokenData
+            h1="Youtube connection ok"
+            div
+                a(href='/activity-list')="Activity list"
+                br
+                br
+                a(href='/video')="Video Upload"
+        else
+            h1="You are not authenticated at this time. Please follow the link bellow"
+            a(href='/youtube/authenticate')="Authenticate with Youtube"
